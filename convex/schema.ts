@@ -84,7 +84,9 @@ export default defineSchema({
     embedding: v.optional(v.array(v.float64())),
   }).vectorIndex("by_embedding", {
     vectorField: "embedding",
-    dimensions: 1536,
+    // Matches LiteLLM `local-embed` (nomic-embed-text-v1.5 → 768 dims),
+    // verified live against the cluster embeddings endpoint.
+    dimensions: 768,
     filterFields: ["userId"],
   }),
   subTodos: defineTable({
@@ -100,7 +102,9 @@ export default defineSchema({
     embedding: v.optional(v.array(v.float64())),
   }).vectorIndex("by_embedding", {
     vectorField: "embedding",
-    dimensions: 1536,
+    // Matches LiteLLM `local-embed` (nomic-embed-text-v1.5 → 768 dims),
+    // verified live against the cluster embeddings endpoint.
+    dimensions: 768,
     filterFields: ["userId"],
   }),
   labels: defineTable({

@@ -27,9 +27,9 @@ export default function LoginForm() {
             </h1>
           </Link>
           <div className="hidden lg:flex w-fit items-center">
-            <form action={signInAction}>
+            <Link href="#signin">
               <GoogleSignInButton />
-            </form>
+            </Link>
           </div>
         </div>
         <div className="w-full px-4 pt pt-12 md:px-4 lg:px-8 xl:px-10 2xl:px-0">
@@ -67,8 +67,27 @@ export default function LoginForm() {
               <span className="font-bold px-1">predicts what&apos;s next</span>
               using AI.
             </h2>
-            <div className="mt-12 flex flex-col gap-4">
-              <form action={signInAction}>
+            <div className="mt-12 flex flex-col gap-4" id="signin">
+              <form
+                action={signInAction}
+                className="flex flex-col gap-3 w-full max-w-sm"
+              >
+                <input
+                  name="username"
+                  type="text"
+                  placeholder="Username"
+                  autoComplete="username"
+                  required
+                  className="px-4 py-3 rounded-xl border border-purple-500/50 bg-white/70 focus:outline-none focus:ring-2 focus:ring-purple-400"
+                />
+                <input
+                  name="password"
+                  type="password"
+                  placeholder="Password"
+                  autoComplete="current-password"
+                  required
+                  className="px-4 py-3 rounded-xl border border-purple-500/50 bg-white/70 focus:outline-none focus:ring-2 focus:ring-purple-400"
+                />
                 <GetStartedButton />
               </form>
               <div className="w-fit items-center">
@@ -219,7 +238,7 @@ function GoogleSignInButton() {
             <Loader className="w-5 h-5" />
           </span>
         ) : (
-          "Sign in with Google"
+          "Sign in"
         )}
       </span>
     </button>
