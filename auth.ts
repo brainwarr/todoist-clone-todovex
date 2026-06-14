@@ -53,7 +53,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       (session as any).userId = userId;
 
       const privateKey = await importPKCS8(
-        process.env.CONVEX_AUTH_PRIVATE_KEY!,
+        process.env.CONVEX_AUTH_PRIVATE_KEY!.replace(/\\n/g, '\n'),
         "RS256"
       );
 
