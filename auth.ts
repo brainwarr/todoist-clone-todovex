@@ -11,22 +11,11 @@ import { api } from "./convex/_generated/api";
 // carries `sub: <convex users._id>`, which Convex resolves via
 // `getUserIdentity().subject` in `handleUserId`.
 
-if (process.env.CONVEX_AUTH_PRIVATE_KEY === undefined) {
-  throw new Error("Missing CONVEX_AUTH_PRIVATE_KEY");
-}
-
-if (process.env.JWKS === undefined) {
-  throw new Error("Missing JWKS");
-}
-
 // The HTTP-actions ("site") origin of the self-hosted backend, e.g.
 // http://narishima.7811.net:30013 — this is the JWT issuer and where the JWKS
 // is served (convex/http.ts). Set explicitly instead of the upstream
 // ".cloud" → ".site" string munging, which assumes Convex Cloud hostnames.
 const CONVEX_SITE_URL = process.env.CONVEX_SITE_URL!;
-if (CONVEX_SITE_URL === undefined) {
-  throw new Error("Missing CONVEX_SITE_URL");
-}
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   session: { strategy: "jwt" },
